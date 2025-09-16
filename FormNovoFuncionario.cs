@@ -1,14 +1,6 @@
 ﻿using EmpresaDigital.Database;
 using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace EmpresaDigital
 {
@@ -19,9 +11,20 @@ namespace EmpresaDigital
             InitializeComponent();
         }
 
-        private void btnVoltar_Click(object sender, EventArgs e)
+        private void FormNovoFuncionario_Load(object sender, EventArgs e)
         {
-            this.Close();
+            using (MySqlConnection conexao = new(DBConfiguration.conexaoString))
+            {
+                conexao.Open();
+                string querySQL = "SELECT cargo_id AS ID, cargo_nome AS Cargo FROM cargos";
+                MySqlCommand comando = new(querySQL, conexao);
+                MySqlDataAdapter adaptador = new(comando);
+                DataTable tabelaCargos = new();
+                adaptador.Fill(tabelaCargos);
+                cboCargos.DataSource = tabelaCargos;
+                cboCargos.DisplayMember = "Cargo";
+                cboCargos.ValueMember = "ID";
+            }
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -40,20 +43,9 @@ namespace EmpresaDigital
             }
         }
 
-        private void FormNovoFuncionario_Load(object sender, EventArgs e)
+        private void btnVoltar_Click(object sender, EventArgs e)
         {
-            using (MySqlConnection conexao = new(DBConfiguration.conexaoString))
-            {
-                conexao.Open();
-                string querySQL = "SELECT cargo_id AS ID, cargo_nome AS Cargo FROM cargos";
-                MySqlCommand comando = new(querySQL, conexao);
-                MySqlDataAdapter adaptador = new(comando);
-                DataTable tabelaCargos = new();
-                adaptador.Fill(tabelaCargos);
-                cboCargos.DataSource = tabelaCargos;
-                cboCargos.DisplayMember = "Cargo";
-                cboCargos.ValueMember = "ID";
-            }
+            this.Close();
         }
     }
 }

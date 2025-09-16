@@ -38,9 +38,10 @@
             // btnVoltar
             // 
             btnVoltar.Cursor = Cursors.Hand;
-            btnVoltar.Location = new Point(12, 12);
+            btnVoltar.Location = new Point(8, 7);
+            btnVoltar.Margin = new Padding(2, 2, 2, 2);
             btnVoltar.Name = "btnVoltar";
-            btnVoltar.Size = new Size(112, 34);
+            btnVoltar.Size = new Size(78, 24);
             btnVoltar.TabIndex = 0;
             btnVoltar.Text = "Voltar";
             btnVoltar.UseVisualStyleBackColor = true;
@@ -49,27 +50,30 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = SystemColors.Control;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label1.Location = new Point(12, 80);
+            label1.Location = new Point(8, 48);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(249, 32);
+            label1.Size = new Size(165, 21);
             label1.TabIndex = 1;
             label1.Text = "Digite o novo cargo:";
             // 
             // txbCargo
             // 
             txbCargo.Font = new Font("Segoe UI", 12F);
-            txbCargo.Location = new Point(12, 120);
-            txbCargo.Margin = new Padding(8);
+            txbCargo.Location = new Point(8, 72);
+            txbCargo.Margin = new Padding(6, 5, 6, 5);
             txbCargo.Name = "txbCargo";
-            txbCargo.Size = new Size(249, 39);
+            txbCargo.Size = new Size(176, 29);
             txbCargo.TabIndex = 2;
             // 
             // btnSalvar
             // 
-            btnSalvar.Location = new Point(12, 170);
+            btnSalvar.Location = new Point(8, 102);
+            btnSalvar.Margin = new Padding(2, 2, 2, 2);
             btnSalvar.Name = "btnSalvar";
-            btnSalvar.Size = new Size(112, 34);
+            btnSalvar.Size = new Size(78, 24);
             btnSalvar.TabIndex = 3;
             btnSalvar.Text = "Salvar";
             btnSalvar.UseVisualStyleBackColor = true;
@@ -77,17 +81,18 @@
             // 
             // FormNovoCargo
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveBorder;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(560, 270);
             Controls.Add(btnSalvar);
             Controls.Add(txbCargo);
             Controls.Add(label1);
             Controls.Add(btnVoltar);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(2, 2, 2, 2);
             Name = "FormNovoCargo";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FormNovoCargo";

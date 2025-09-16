@@ -101,7 +101,9 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackgroundImage = Properties.Resources.wicked_elphaba;
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(316, 200);
             Controls.Add(btnSalvar);
             Controls.Add(cboCargos);
             Controls.Add(label1);
@@ -110,6 +112,7 @@
             Controls.Add(btnVoltar);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FormNovoFuncionario";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Novo Funcionário";
             Load += FormNovoFuncionario_Load;
             ResumeLayout(false);
