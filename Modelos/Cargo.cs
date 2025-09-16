@@ -1,4 +1,6 @@
-﻿namespace EmpresaDigital.Modelos;
+﻿using MySql.Data.MySqlClient;
+
+namespace EmpresaDigital.Modelos;
 
 internal class Cargo
 {
@@ -14,5 +16,21 @@ internal class Cargo
     {// Para quando os cargos já foram criados
         this.id = id;
         this.nome = nome;
+    }
+
+    public void NovoCargo(MySqlConnection conexao)
+    {
+        conexao.Open();
+        string querySQL = "INSERT INTO cargos(cargo_nome) VALUES (@nome_cargo)";
+        var comando = new MySqlCommand(querySQL, conexao);
+        comando.Parameters.AddWithValue("@nome_cargo", this.nome);
+        var resultado = comando.ExecuteNonQuery();
+        if (resultado > 1)
+        {
+            MessageBox.Show($"O cargo {this.nome} foi adicionado com sucesso");
+        } else
+        {
+            throw new Exception("Não foi possivel criado o cargo solicitado");
+        }
     }
 }

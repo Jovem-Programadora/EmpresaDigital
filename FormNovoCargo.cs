@@ -19,11 +19,7 @@ namespace EmpresaDigital
         {
             using (MySqlConnection conexao = new(DBConfiguration.conexaoString))
             {
-                conexao.Open();
-                string querySQL = "INSERT INTO cargos(cargo_nome) VALUES (@nome_cargo)";
-                var comando = new MySqlCommand(querySQL, conexao);
-                comando.Parameters.AddWithValue("@nome_cargo", txbCargo.Text);
-                var resultado = comando.ExecuteNonQuery();
+                
                 if (resultado > 0)
                 {
                     MessageBox.Show("O cargo foi adicionado");
