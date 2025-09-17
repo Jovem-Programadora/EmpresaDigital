@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using System.Data;
 using System.Diagnostics;
 
 namespace EmpresaDigital.Modelos;
@@ -33,5 +34,16 @@ internal class Cargo
         {
             throw new Exception("Não foi possivel criado o cargo solicitado");
         }
+    }
+
+    public static DataTable CarregarCargos(MySqlConnection conexao)
+    {
+        conexao.Open();
+        string querySql = "SELECT cargo_nome AS Cargo FROM cargos";
+        MySqlCommand comando = new(querySql, conexao);
+        MySqlDataAdapter adaptador = new(comando);
+        DataTable tabelaCargos = new();
+        adaptador.Fill(tabelaCargos);
+        return tabelaCargos;
     }
 }

@@ -1,51 +1,40 @@
 ﻿using EmpresaDigital.Database;
+using EmpresaDigital.Modelos;
 using MySql.Data.MySqlClient;
 using System.Data;
 
-namespace EmpresaDigital
+namespace EmpresaDigital;
+
+public partial class FormNovoFuncionario : Form
 {
-    public partial class FormNovoFuncionario : Form
+    public FormNovoFuncionario()
     {
-        public FormNovoFuncionario()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 
-        private void FormNovoFuncionario_Load(object sender, EventArgs e)
+    private void FormNovoFuncionario_Load(object sender, EventArgs e)
+    {
+        using (MySqlConnection conexao = new(DBConfiguration.conexaoString))
         {
-            using (MySqlConnection conexao = new(DBConfiguration.conexaoString))
+            try
             {
-                conexao.Open();
-                string querySQL = "SELECT cargo_id AS ID, cargo_nome AS Cargo FROM cargos";
-                MySqlCommand comando = new(querySQL, conexao);
-                MySqlDataAdapter adaptador = new(comando);
-                DataTable tabelaCargos = new();
-                adaptador.Fill(tabelaCargos);
-                cboCargos.DataSource = tabelaCargos;
+                cboCargos.DataSource = Cargo.CarregarCargos(conexao);
                 cboCargos.DisplayMember = "Cargo";
-                cboCargos.ValueMember = "ID";
             }
-        }
-
-        private void btnSalvar_Click(object sender, EventArgs e)
-        {
-            using (MySqlConnection conexao = new(DBConfiguration.conexaoString))
+            catch (Exception ex)
             {
-                string querySQL = "INSERT INTO funcionarios(funcionario_nome, cargo_id) VALUES(@nome_funcionario, @cargo_id)";
-                conexao.Open();
-                MySqlCommand comando = new(querySQL, conexao);
-                comando.Parameters.AddWithValue("@nome_funcionario", txbNomeFuncionario.Text);
-                comando.Parameters.AddWithValue("@cargo_id", cboCargos.SelectedValue);
-                if (comando.ExecuteNonQuery() > 0)
-                {
-                    MessageBox.Show("Funcionário adicionado com sucesso.", "Operação Sucedida");
-                }
+                MessageBox.Show("Erro ao carregar os cargos");
             }
         }
+    }
 
-        private void btnVoltar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+    private void btnSalvar_Click(object sender, EventArgs e)
+    {
+        //TODO: Criar a ação de salvar o Funcionario
+    }
+
+    private void btnVoltar_Click(object sender, EventArgs e)
+    {
+        this.Close();
     }
 }

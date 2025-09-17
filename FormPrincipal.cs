@@ -1,4 +1,5 @@
 using EmpresaDigital.Database;
+using EmpresaDigital.Modelos;
 using MySql.Data.MySqlClient;
 using System.Data;
 
@@ -17,13 +18,7 @@ namespace EmpresaDigital
             {
                 try
                 {
-                    conexao.Open();
-                    string querySql = "SELECT cargo_nome AS Cargo FROM cargos";
-                    MySqlCommand comando = new(querySql, conexao);
-                    MySqlDataAdapter adaptador = new(comando);
-                    DataTable tabelaCargos = new();
-                    adaptador.Fill(tabelaCargos);
-                    dgvVisualizador.DataSource = tabelaCargos;
+                    dgvVisualizador.DataSource = Cargo.CarregarCargos(conexao);
                 }
                 catch (Exception ex)
                 {
