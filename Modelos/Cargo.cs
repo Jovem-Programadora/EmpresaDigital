@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using System.Diagnostics;
 
 namespace EmpresaDigital.Modelos;
 
@@ -25,7 +26,7 @@ internal class Cargo
         var comando = new MySqlCommand(querySQL, conexao);
         comando.Parameters.AddWithValue("@nome_cargo", this.nome);
         var resultado = comando.ExecuteNonQuery();
-        if (resultado > 1)
+        if (resultado > 0)
         {
             MessageBox.Show($"O cargo {this.nome} foi adicionado com sucesso");
         } else

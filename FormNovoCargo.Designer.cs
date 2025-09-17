@@ -39,7 +39,7 @@
             // 
             btnVoltar.Cursor = Cursors.Hand;
             btnVoltar.Location = new Point(8, 7);
-            btnVoltar.Margin = new Padding(2, 2, 2, 2);
+            btnVoltar.Margin = new Padding(2);
             btnVoltar.Name = "btnVoltar";
             btnVoltar.Size = new Size(78, 24);
             btnVoltar.TabIndex = 0;
@@ -71,7 +71,7 @@
             // btnSalvar
             // 
             btnSalvar.Location = new Point(8, 102);
-            btnSalvar.Margin = new Padding(2, 2, 2, 2);
+            btnSalvar.Margin = new Padding(2);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(78, 24);
             btnSalvar.TabIndex = 3;
@@ -92,7 +92,7 @@
             Controls.Add(label1);
             Controls.Add(btnVoltar);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "FormNovoCargo";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FormNovoCargo";

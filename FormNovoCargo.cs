@@ -1,31 +1,37 @@
 ﻿using EmpresaDigital.Database;
+using EmpresaDigital.Modelos;
 using MySql.Data.MySqlClient;
 
-namespace EmpresaDigital
+namespace EmpresaDigital;
+
+public partial class FormNovoCargo : Form
 {
-    public partial class FormNovoCargo : Form
+    public FormNovoCargo()
     {
-        public FormNovoCargo()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 
-        private void btnVoltar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+    private void btnVoltar_Click(object sender, EventArgs e)
+    {
+        this.Close();
+    }
 
-        private void btnSalvar_Click(object sender, EventArgs e)
+    private void btnSalvar_Click(object sender, EventArgs e)
+    {
+        using (MySqlConnection conexao = new(DBConfiguration.conexaoString))
         {
-            using (MySqlConnection conexao = new(DBConfiguration.conexaoString))
+            try
             {
-                
-                if (resultado > 0)
+                new Cargo(txbCargo.Text).NovoCargo(conexao);
+            }
+            catch (Exception ex)
+            {
+                if(MessageBox.Show("Erro ao executar o salvamento", "Requisição falhou", MessageBoxButtons.RetryCancel) == DialogResult.Retry)
                 {
-                    MessageBox.Show("O cargo foi adicionado");
-                    this.Close();
+                    return;
                 }
             }
+            this.Close();
         }
     }
 }
